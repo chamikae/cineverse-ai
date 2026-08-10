@@ -35,6 +35,10 @@ export function Navbar() {
               Discover
             </NavLink>
 
+            <NavLink to="/watch-free" className={getNavClass}>
+              Watch Free
+            </NavLink>
+
             <span
               title="Watchlist coming soon"
               className="cursor-not-allowed text-white/20"
