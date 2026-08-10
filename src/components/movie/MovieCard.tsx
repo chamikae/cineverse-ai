@@ -12,10 +12,7 @@ export function MovieCard({ movie }: MovieCardProps) {
   const year = movie.release_date?.slice(0, 4);
 
   return (
-    <Link
-      to={`/movie/${movie.id}`}
-      className="group min-w-[170px] sm:min-w-[190px] lg:min-w-[210px]"
-    >
+    <Link to={`/movie/${movie.id}`} className="group block min-w-0">
       <article>
         <div className="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 ring-1 ring-white/10">
           {movie.poster_path ? (
@@ -42,6 +39,7 @@ export function MovieCard({ movie }: MovieCardProps) {
           <div className="mt-1 flex items-center gap-2 text-sm text-white/50">
             <span className="flex items-center gap-1">
               <Star size={13} className="fill-yellow-400 text-yellow-400" />
+
               {movie.vote_average.toFixed(1)}
             </span>
 

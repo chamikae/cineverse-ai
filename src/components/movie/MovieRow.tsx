@@ -26,7 +26,9 @@ export function MovieRow({ eyebrow, title, movies }: MovieRowProps) {
 
       <div className="flex gap-5 overflow-x-auto pb-6">
         {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <div key={movie.id} className="min-w-[170px] sm:min-w-[190px] lg:min-w-[210px]">
+            <MovieCard movie={movie} />
+          </div>
         ))}
       </div>
     </section>

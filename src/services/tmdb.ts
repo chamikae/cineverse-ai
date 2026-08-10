@@ -1,6 +1,11 @@
 import axios from "axios";
 
-import type { MovieDetails, MovieListResponse } from "@/types/movie";
+import type {
+  DiscoverMovieParams,
+  GenreListResponse,
+  MovieDetails,
+  MovieListResponse,
+} from "@/types/movie";
 
 const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -60,6 +65,7 @@ export const movieApi = {
     const response = await tmdb.get<MovieListResponse>("/search/movie", {
       params: {
         query,
+        include_adult: false,
       },
     });
 
@@ -70,6 +76,28 @@ export const movieApi = {
     const response = await tmdb.get<MovieDetails>(`/movie/${id}`, {
       params: {
         append_to_response: "videos,credits,similar,watch/providers",
+      },
+    });
+
+    return response.data;
+  },
+
+  async genres(): Promise<GenreListResponse> {
+    const response = await tmdb.get<GenreListResponse>("/genre/movie/list");
+
+    return response.data;
+  },
+
+  async discover(filters: DiscoverMovieParams): Promise<MovieListResponse> {
+    const response = await tmdb.get<MovieListResponse>("/discover/movie", {
+      params: {
+        include_adult: false,
+        include_video: false,
+        page: filters.page ?? 1,
+        sort_by: filters.sortBy ?? "popularity.desc",
+        with_genres: filters.genreId,
+        primary_release_year: filters.year,
+        "vote_average.gte": filters.minRating,
       },
     });
 

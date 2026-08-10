@@ -22,6 +22,10 @@ export interface Genre {
   name: string;
 }
 
+export interface GenreListResponse {
+  genres: Genre[];
+}
+
 export interface Video {
   id: string;
   key: string;
@@ -40,11 +44,28 @@ export interface CastMember {
 export interface MovieDetails extends Movie {
   runtime: number;
   genres: Genre[];
+
   videos: {
     results: Video[];
   };
+
   credits: {
     cast: CastMember[];
   };
+
   similar: MovieListResponse;
+}
+
+export type MovieSortOption =
+  | "popularity.desc"
+  | "vote_average.desc"
+  | "primary_release_date.desc"
+  | "primary_release_date.asc";
+
+export interface DiscoverMovieParams {
+  genreId?: number;
+  year?: number;
+  minRating?: number;
+  sortBy?: MovieSortOption;
+  page?: number;
 }

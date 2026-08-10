@@ -1,8 +1,12 @@
 import { Film, Search } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { SearchOverlay } from "@/components/search/SearchOverlay";
+
+function getNavClass({ isActive }: { isActive: boolean }) {
+  return isActive ? "text-white" : "text-white/50 transition hover:text-white";
+}
 
 export function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -17,18 +21,26 @@ export function Navbar() {
             </div>
 
             <span className="text-xl font-black tracking-tight sm:text-2xl">
-              Cine<span className="text-red-500">Verse</span> AI
+              Cine
+              <span className="text-red-500">Verse</span> AI
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-7 text-sm font-medium text-white/60 md:flex">
-            <Link to="/" className="transition hover:text-white">
+          <nav className="hidden items-center gap-7 text-sm font-medium md:flex">
+            <NavLink to="/" end className={getNavClass}>
               Home
-            </Link>
+            </NavLink>
 
-            <span className="cursor-not-allowed text-white/25">Discover</span>
+            <NavLink to="/discover" className={getNavClass}>
+              Discover
+            </NavLink>
 
-            <span className="cursor-not-allowed text-white/25">Watchlist</span>
+            <span
+              title="Watchlist coming soon"
+              className="cursor-not-allowed text-white/20"
+            >
+              Watchlist
+            </span>
           </nav>
 
           <button
