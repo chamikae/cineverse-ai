@@ -6,6 +6,7 @@ import { useTopRatedMovies } from "@/features/home/hooks/useTopRatedMovies";
 import { useTrendingMovies } from "@/features/home/hooks/useTrendingMovies";
 import { useUpcomingMovies } from "@/features/home/hooks/useUpcomingMovies";
 import { getImageUrl } from "@/services/tmdb";
+import { Link } from "react-router-dom";
 
 function HomeSkeleton() {
   return (
@@ -161,13 +162,13 @@ export function HomePage() {
             )}
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <button
-                type="button"
+              <Link
+                to={`/movie/${heroMovie.id}`}
                 className="inline-flex items-center gap-2 rounded-full bg-red-500 px-6 py-3 font-bold transition hover:bg-red-400"
               >
                 <Play size={18} fill="currentColor" />
                 Explore Movie
-              </button>
+              </Link>
 
               <button
                 type="button"
