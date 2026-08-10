@@ -6,6 +6,8 @@ import { FreeMoviePage } from "@/features/free-movies/FreeMoviePage";
 import { WatchFreePage } from "@/features/free-movies/WatchFreePage";
 import { HomePage } from "@/features/home/HomePage";
 import { MovieDetailsPage } from "@/features/movie/MovieDetailsPage";
+import { TVDetailsPage } from "@/features/tv/TVDetailsPage";
+import { TVShowsPage } from "@/features/tv/TVShowsPage";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: "/watch-free/:itemId",
         element: <FreeMoviePage />,
+      },
+      {
+        path: "/tv",
+        element: <TVShowsPage />,
+      },
+      {
+        path: "/tv/:id",
+        element: <TVDetailsPage />,
       },
     ],
   },
